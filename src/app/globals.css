@@ -1,26 +1,183 @@
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@plugin "daisyui" {
+  themes: false;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: #faf4ec;
+  --color-base-200: #f3e6d8;
+  --color-base-300: #e4d0bc;
+  --color-base-content: #2e2620;
+
+  --color-primary: #b5563a;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #e8d5c4;
+  --color-secondary-content: #3a2a1f;
+
+  --color-accent: #8a5a44;
+  --color-accent-content: #ffffff;
+
+  --color-neutral: #3a2a1f;
+  --color-neutral-content: #faf4ec;
+
+  --color-info: #4a6fa5;
+  --color-info-content: #ffffff;
+  --color-success: #7f5620;
+  --color-success-content: #ffffff;
+  --color-warning: #c98a2e;
+  --color-warning-content: #2e2620;
+  --color-error: #a93a32;
+  --color-error-content: #ffffff;
+
+  --surface-card-bg: #ffffff;
+  --neutral-highlight: #e8d5c4;
+
+  --radius-selector: 9999px;
+  --radius-field: 0.5rem;
+  --radius-box: 0.875rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: #1c1512;
+  --color-base-200: #2a1f19;
+  --color-base-300: #3d2c23;
+  --color-base-content: #f5e9dd;
+
+  --color-primary: #e08a6a;
+  --color-primary-content: #1c1512;
+
+  --color-secondary: #3d2c23;
+  --color-secondary-content: #f5e9dd;
+
+  --color-accent: #c18a70;
+  --color-accent-content: #1c1512;
+
+  --color-neutral: #2a1f19;
+  --color-neutral-content: #f5e9dd;
+
+  --color-info: #7fa3cc;
+  --color-info-content: #1c1512;
+  --color-success: #d6a85f;
+  --color-success-content: #1c1512;
+  --color-warning: #e0ae5e;
+  --color-warning-content: #1c1512;
+  --color-error: #e58a7a;
+  --color-error-content: #1c1512;
+
+  --surface-card-bg: #2a1f19;
+  --neutral-highlight: #e08a6a;
+
+  --radius-selector: 9999px;
+  --radius-field: 0.5rem;
+  --radius-box: 0.875rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --shadow-soft: 0 10px 30px -18px rgb(58 42 31 / 0.35);
+  --shadow-lift: 0 20px 40px -24px rgb(58 42 31 / 0.45);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-base-100);
+    color: var(--color-base-content);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  }
+
+  ::selection {
+    background-color: var(--color-secondary);
+    color: var(--color-secondary-content);
+  }
+
+  :focus-visible {
+    outline-color: var(--color-primary);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .app-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .page-heading {
+    @apply text-3xl font-bold tracking-tight text-base-content sm:text-4xl;
+  }
+
+  .section-heading {
+    @apply text-2xl font-bold tracking-tight text-base-content sm:text-3xl;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-primary;
+  }
+
+  .surface-card {
+    @apply rounded-[14px] border border-base-300 shadow-soft;
+    background-color: var(--surface-card-bg);
+  }
+
+  .event-card {
+    @apply overflow-hidden rounded-[14px] border border-base-300 shadow-soft transition duration-300 hover:-translate-y-0.5 hover:shadow-lift;
+    background-color: var(--surface-card-bg);
+  }
+
+  .form-label {
+    @apply mb-2 block text-sm font-semibold text-base-content;
+  }
+
+  .field {
+    @apply w-full rounded-lg border-base-300 bg-base-100 text-base-content focus:border-primary focus:outline-none;
+  }
+
+  .meta-text {
+    @apply flex items-center gap-2 text-sm text-base-content/60;
+  }
+
+  .text-neutral-highlight {
+    color: var(--neutral-highlight);
+  }
+
+  .empty-panel {
+    @apply rounded-[14px] border border-dashed border-base-300 px-6 py-14 text-center;
+    background-color: var(--surface-card-bg);
+  }
 }
