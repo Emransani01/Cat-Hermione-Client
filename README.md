@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cat-Hermione
+
+A social development events platform that brings people together to organize, discover, and participate in meaningful community activities.
+
+## Project Overview
+
+Cat-Hermione helps people create social development events, discover upcoming activities, connect with volunteers, and contribute to positive changes in their communities.
+
+## Features
+
+- User registration and login with Better Auth
+- Protected routes for authenticated users
+- Create, update, and delete community events
+- Browse upcoming events with search and filtering
+- Join and leave community events
+- Manage created events
+- View joined events
+- User profile management
+- Responsive design for mobile, tablet, and desktop
+- Light and dark theme support
+- Form validation and toast notifications
+- JWT-based authentication with server API
+
+## Technologies Used
+
+### Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- DaisyUI
+- Better Auth
+- React Hook Form
+- Zod
+- React Hot Toast
+- Lucide React
+
+### Backend
+
+- Express.js
+- MongoDB
+- JWT
+- JOSE
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js
+- npm
+- MongoDB database
+- Backend server configured and running
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone YOUR_CLIENT_GITHUB_REPOSITORY_URL
+```
+
+Navigate to the client directory:
+
+```bash
+cd client
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env.local` file in the client root and configure the required environment variables.
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Configure the following variables in `.env.local`:
 
-## Learn More
+```env
+BETTER_AUTH_URL=
+BETTER_AUTH_SECRET=
+MONGODB_URI=
+DB_NAME=
+NEXT_PUBLIC_APP_URL=
+NEXT_PUBLIC_API_URL=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
 
-To learn more about Next.js, take a look at the following resources:
+Do not commit environment files or expose secret values.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+client/
+├── src/
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   └── providers/
+├── public/
+├── package.json
+└── README.md
+```
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The frontend is designed to be deployed on Vercel.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Live Demo: Add your deployed frontend URL here.
+
+## Author
+
+Md. Emran Hossain
