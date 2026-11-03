@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, type FormEvent } from "react";
@@ -13,12 +12,14 @@ import {
   Image as ImageIcon,
   Lock,
   Leaf,
+  Globe,
 } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -73,6 +74,25 @@ export default function RegisterPage() {
       toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleRegister = async () => {
+    try {
+      setGoogleLoading(true);
+
+      const { error } = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+
+      if (error) {
+        toast.error(error.message || "Google registration failed.");
+        setGoogleLoading(false);
+      }
+    } catch {
+      toast.error("Unable to register with Google.");
+      setGoogleLoading(false);
     }
   };
 
@@ -247,9 +267,10 @@ export default function RegisterPage() {
                 </div>
               </label>
 
+              {/* Create Account Button */}
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || googleLoading}
                 className="btn btn-primary mt-2 min-h-11 w-full rounded-lg"
               >
                 {loading ? (
@@ -263,11 +284,28 @@ export default function RegisterPage() {
               </button>
             </form>
 
-            <div className="divider my-6 text-xs text-base-content/50">
-              OR
-            </div>
+            {/* OR Divider */}
+            <div className="divider my-6 text-xs text-base-content/50">OR</div>
 
-            <p className="text-center text-sm text-base-content/70">
+            {/* Google Registration Button */}
+            <button
+              type="button"
+              onClick={handleGoogleRegister}
+              disabled={loading || googleLoading}
+              className="btn min-h-11 w-full rounded-lg border border-base-300 bg-[var(--surface-card-bg)] text-base-content hover:border-primary/40 hover:bg-secondary"
+            >
+              {googleLoading ? (
+                <span className="loading loading-spinner loading-sm" />
+              ) : (
+                <>
+                  <Globe size={19} />
+                  Continue with Google
+                </>
+              )}
+            </button>
+
+            {/* Login Link */}
+            <p className="mt-5 text-center text-sm text-base-content/70">
               Already have an account?{" "}
               <Link
                 href="/login"
